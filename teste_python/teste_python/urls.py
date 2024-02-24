@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+from accounts.auth_views import LoginAPIView
 from accounts.views import UserViewSet
+from companies.views import CompanyViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'companies', CompanyViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('login/', LoginAPIView.as_view(), name='login'),
 ]
