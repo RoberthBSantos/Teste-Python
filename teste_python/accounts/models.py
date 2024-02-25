@@ -45,16 +45,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         help_text=_(
             'The groups this user belongs to. A user will get all permissions granted to each of their groups.'),
-        related_name="accounts_user_groups",  # Unique related_name for groups
+        related_name="accounts_user_groups",
         related_query_name="account_user",
     )
-    # Modify the user_permissions field
+
     user_permissions = models.ManyToManyField(
         'auth.Permission',
         verbose_name=_('user permissions'),
         blank=True,
         help_text=_('Specific permissions for this user.'),
-        related_name="accounts_user_permissions",  # Unique related_name for permissions
+        related_name="accounts_user_permissions",
         related_query_name="account_user",
     )
 

@@ -16,9 +16,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             company = services.create_company(
                 serializer.validated_data['cnpj'],
-                serializer.validated_data['razao_social'],
-                serializer.validated_data['nome_fantasia'],
-                serializer.validated_data.get('users', []),
+                serializer.validated_data['corporate_name'],
+                serializer.validated_data['trade_name'],
                 owner_id=self.request.user.id,
             )
             output_serializer = CompanySerializer(company, context={'request': request})
