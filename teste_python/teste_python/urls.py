@@ -21,6 +21,7 @@ from rest_framework.routers import DefaultRouter
 from accounts.auth_views import LoginAPIView
 from accounts.views import UserViewSet
 from companies.views import CompanyViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
