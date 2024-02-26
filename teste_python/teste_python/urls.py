@@ -20,8 +20,7 @@ from rest_framework.routers import DefaultRouter
 
 from accounts.auth_views import LoginAPIView
 from accounts.views import UserViewSet
-from companies.views import CompanyViewSet
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from companies.views import CompanyViewSet, CompanyMemberView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -31,4 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('login/', LoginAPIView.as_view(), name='login'),
+    path('company_member/add/', CompanyMemberView.as_view({'post': 'create'}), name='add-company-member'),
+    path('my-companies/', CompanyMemberView.as_view({'get': 'get_companies'}), name='my-companies'),
+    path('company/members/', CompanyMemberView.as_view({'post': 'get_members'}), name='members'),
 ]

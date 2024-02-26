@@ -11,6 +11,7 @@ class Company(models.Model):
     def __str__(self):
         return self.trade_name
 
+
 class CompanyMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='companies')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='members')
