@@ -1,11 +1,10 @@
-FROM python:3.8
+FROM python:3.11.0
 
 # Define o diretório de trabalho dentro do container
 WORKDIR /usr/src/app
 
 # Instala as dependências da aplicação
 COPY requirements.txt ./
-RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia os arquivos da sua aplicação para o diretório de trabalho

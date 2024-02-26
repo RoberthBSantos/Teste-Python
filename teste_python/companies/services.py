@@ -2,15 +2,17 @@ from django.core.exceptions import ValidationError
 
 from accounts.models import User
 from .models import Company, CompanyMember
+# from .producers import schedule_company_update
 
 
 def create_company(cnpj: str, razao_social: str, nome_fantasia: str, owner_id: int) -> Company:
     user = User.objects.get(id=owner_id)
     print(owner_id)
-    company = Company(cnpj=cnpj, razao_social=razao_social, nome_fantasia=nome_fantasia)
+    company = Company(cnpj=cnpj, corporate_name=razao_social, trade_name=nome_fantasia)
     company.save()
     company.owner = user
     company.save()
+    # schedule_company_update(company.pk, cnpj)
     return company
 
 
